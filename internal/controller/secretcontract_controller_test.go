@@ -51,7 +51,11 @@ var _ = Describe("SecretContract Controller", func() {
 						Name:      resourceName,
 						Namespace: "default",
 					},
-					// TODO(user): Specify other spec details if needed.
+					Spec: secretsv1alpha1.SecretContractSpec{
+						SecretRef: secretsv1alpha1.LocalSecretReference{
+							Name: "test-secret",
+						},
+					},
 				}
 				Expect(k8sClient.Create(ctx, resource)).To(Succeed())
 			}
